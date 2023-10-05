@@ -23,7 +23,6 @@ if (localStorage.getItem('darkMode') === 'dark') {
 
 
 
-
 // Если меняются системные настройки (если автоматически в течении дня система
 // переключается с одной темы на другую) - меняем  тему
 
@@ -61,3 +60,25 @@ btnDarkMode.onclick = () => {
 
     }
 }
+
+
+const projectsAll = document.querySelector('main .projects');
+
+// Заполняем все проекты из базы (projects.js)
+projects.forEach((item) => {
+    // console.log(item.id + " " + item.title + " " + item.img);
+    // console.log("-----");
+    projectsAll.innerHTML += `<li class="project" onclick="projectDetails(${item.id})">
+            <a href="./project-page.html">
+                <img src="./img/projects/${item.img}" alt="Project img" class="project__img">
+                <h3 class="project__title">${item.title}</h3>
+            </a>
+        </li`;
+});
+
+
+// Сохраняем 'id' выбранного проекта, для последующего использования в "подробно"
+function projectDetails(id) {
+     
+    localStorage.setItem('projectId', id);
+ }
